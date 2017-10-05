@@ -1,0 +1,57 @@
+# Project: E:\1-CAFSInfo\GitPool2\libw2m
+# Makefile created by Dev-C++ 5.10
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = Output/dllmain.o Output/math-funcs.o Output/pyin.o Output/yin.o Output/matlabfunctions.o Output/gvps_full.o Output/gvps_obsrv.o Output/gvps_sampled.o Output/gvps_variable.o Output/export.o
+LINKOBJ  = Output/dllmain.o Output/math-funcs.o Output/pyin.o Output/yin.o Output/matlabfunctions.o Output/gvps_full.o Output/gvps_obsrv.o Output/gvps_sampled.o Output/gvps_variable.o Output/export.o
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib32" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -m32 -g3
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"
+BIN      = Output/libw2m.dll
+CXXFLAGS = $(CXXINCS) -m32 -g3 -DBUILDING_DLL=1
+CFLAGS   = $(INCS) -m32 -g3 -DFP_TYPE=float -std=c99 -Ofast -Wall -fPIC -DBUILDING_DLL=1
+RM       = rm.exe -f
+DEF      = Output/liblibw2m.def
+STATIC   = Output/liblibw2m.a
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN) $(DEF) $(STATIC)
+
+$(BIN): $(LINKOBJ)
+	$(CC) -shared $(LINKOBJ) -o $(BIN) $(LIBS) -Wl,--output-def,$(DEF),--out-implib,$(STATIC),--add-stdcall-alias
+
+Output/dllmain.o: dllmain.c
+	$(CC) -c dllmain.c -o Output/dllmain.o $(CFLAGS)
+
+Output/math-funcs.o: gcc-external/libpyin/math-funcs.c
+	$(CC) -c gcc-external/libpyin/math-funcs.c -o Output/math-funcs.o $(CFLAGS)
+
+Output/pyin.o: gcc-external/libpyin/pyin.c
+	$(CC) -c gcc-external/libpyin/pyin.c -o Output/pyin.o $(CFLAGS)
+
+Output/yin.o: gcc-external/libpyin/yin.c
+	$(CC) -c gcc-external/libpyin/yin.c -o Output/yin.o $(CFLAGS)
+
+Output/matlabfunctions.o: gcc-external/libpyin/external/matlabfunctions.c
+	$(CC) -c gcc-external/libpyin/external/matlabfunctions.c -o Output/matlabfunctions.o $(CFLAGS)
+
+Output/gvps_full.o: gcc-external/libpyin/external/libgvps/gvps_full.c
+	$(CC) -c gcc-external/libpyin/external/libgvps/gvps_full.c -o Output/gvps_full.o $(CFLAGS)
+
+Output/gvps_obsrv.o: gcc-external/libpyin/external/libgvps/gvps_obsrv.c
+	$(CC) -c gcc-external/libpyin/external/libgvps/gvps_obsrv.c -o Output/gvps_obsrv.o $(CFLAGS)
+
+Output/gvps_sampled.o: gcc-external/libpyin/external/libgvps/gvps_sampled.c
+	$(CC) -c gcc-external/libpyin/external/libgvps/gvps_sampled.c -o Output/gvps_sampled.o $(CFLAGS)
+
+Output/gvps_variable.o: gcc-external/libpyin/external/libgvps/gvps_variable.c
+	$(CC) -c gcc-external/libpyin/external/libgvps/gvps_variable.c -o Output/gvps_variable.o $(CFLAGS)
+
+Output/export.o: export.c
+	$(CC) -c export.c -o Output/export.o $(CFLAGS)

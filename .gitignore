@@ -1,0 +1,12 @@
+build
+*~
+*.o
+*.a
+*.dll
+*.sdf
+*.obj
+Output/*
+w2m-demo/Debug/*
+w2m-demo/Release/*
+w2m-demo/Builds/*
+
