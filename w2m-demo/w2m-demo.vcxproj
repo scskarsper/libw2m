@@ -57,6 +57,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /y "$(OutDir)..\..\Output\libw2m.dll" "$(OutDir)\libw2m.dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -80,11 +83,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libw2m.h" />
+    <ClInclude Include="sox-wapper.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libw2m.cpp" />
+    <ClCompile Include="sox-wapper.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="w2m-demo.cpp" />
   </ItemGroup>

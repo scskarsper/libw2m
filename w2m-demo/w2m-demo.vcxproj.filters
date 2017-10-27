@@ -27,6 +27,9 @@
     <ClInclude Include="libw2m.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="sox-wapper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -36,6 +39,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="libw2m.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sox-wapper.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
